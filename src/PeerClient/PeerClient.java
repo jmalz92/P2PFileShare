@@ -6,6 +6,9 @@
 
 package PeerClient;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+
 /**
  *
  * @author Justin
@@ -154,6 +157,29 @@ public class PeerClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private static void startPeerServer(){
+
+        try {
+            int port = 8000; //change this at some point
+
+            try {
+
+                ServerSocket socket = new ServerSocket(port);
+                System.out.println("Started on port: " + port);
+
+                while (true) {
+                    new PeerServerThread(socket.accept()).start();
+                }
+
+            } catch (IOException e) {
+                System.err.println("Could not listen on port: " + port);
+                System.err.println(e.getMessage());
+                System.exit(-1);
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Please supply a valid port number");
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -187,6 +213,8 @@ public class PeerClient extends javax.swing.JFrame {
                 new PeerClient().setVisible(true);
             }
         });
+        
+        startPeerServer();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
