@@ -108,7 +108,6 @@ public class DirectoryServer {
             }
           }
         } catch (java.io.IOException e) {
-          
         } 
       }
     } 

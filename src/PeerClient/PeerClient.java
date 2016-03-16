@@ -8,6 +8,9 @@ package PeerClient;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -156,7 +159,18 @@ public class PeerClient extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
+    
+    private static void startUDPMessageThread(){
+        //schedule UDP Message threads
+        ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+        exec.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Sending UDP Message");
+            }
+        }, 60, 60, TimeUnit.SECONDS);
+    }
+    
     private static void startPeerServer(){
 
         try {
@@ -166,7 +180,7 @@ public class PeerClient extends javax.swing.JFrame {
 
                 ServerSocket socket = new ServerSocket(port);
                 System.out.println("Started on port: " + port);
-
+                
                 while (true) {
                     new PeerServerThread(socket.accept()).start();
                 }
@@ -214,7 +228,15 @@ public class PeerClient extends javax.swing.JFrame {
             }
         });
         
+        //connect to directory server
+        
+        //start message thread to directory server
+        startUDPMessageThread();
+        
+        //start Peer Server
         startPeerServer();
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
