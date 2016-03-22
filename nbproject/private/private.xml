@@ -4,9 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Justin/Documents/P2PFileShare/src/PeerClient/PeerServerThread.java</file>
-            <file>file:/C:/Users/Justin/Documents/P2PFileShare/src/DirectoryServer/DirectoryThread.java</file>
+            <file>file:/C:/Users/Justin/Documents/P2PFileShare/src/PeerClient/PeerClientThread.java</file>
             <file>file:/C:/Users/Justin/Documents/P2PFileShare/src/PeerClient/PeerClient.java</file>
-            <file>file:/C:/Users/Justin/Documents/P2PFileShare/src/DirectoryServer/DirectoryServer.java</file>
         </group>
     </open-files>
 </project-private>
